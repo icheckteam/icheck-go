@@ -2,10 +2,8 @@ package icheck
 
 import (
 	"bytes"
-	"fmt"
 	"net/http"
 	"net/url"
-	"strconv"
 )
 
 // RequestValues is a collection of values that can be submitted along with a
@@ -103,87 +101,7 @@ type formValue struct {
 // Params is the structure that contains the common properties
 // of any *Params structure.
 type Params struct {
-	Exp []string
+	AccessToken string
 	// Headers may be used to provide extra header lines on the HTTP request.
 	Headers http.Header
-}
-
-// ListParams is the structure that contains the common properties
-// of any *ListParams structure.
-type ListParams struct {
-	Exp     []string
-	Limit   int
-	Skip    int
-	Filters Filters
-}
-
-// Filters is a structure that contains a collection of filters for list-related APIs.
-type Filters struct {
-	f []*filter
-}
-
-// AppendTo adds the list of filters to the query string values.
-func (f *Filters) AppendTo(values *RequestValues) {
-	for _, v := range f.f {
-		if len(v.Op) > 0 {
-			values.Add(fmt.Sprintf("%v[%v]", v.Key, v.Op), v.Val)
-		} else {
-			values.Add(v.Key, v.Val)
-		}
-	}
-}
-
-// filter is the structure that contains a filter for list-related APIs.
-// It ends up passing query string parameters in the format key[op]=value.
-type filter struct {
-	Key, Op, Val string
-}
-
-// AddFilter adds a new filter with a given key, op and value.
-func (f *Filters) AddFilter(key, op, value string) {
-	filter := &filter{Key: key, Op: op, Val: value}
-	f.f = append(f.f, filter)
-}
-
-// AppendTo adds the common parameters to the query string values.
-func (p *Params) AppendTo(body *RequestValues) {
-	for _, v := range p.Exp {
-		body.Add("expand[]", v)
-	}
-}
-
-// Expand appends a new field to expand.
-func (p *ListParams) Expand(f string) {
-	p.Exp = append(p.Exp, f)
-}
-
-// AppendTo adds the common parameters to the query string values.
-func (p *ListParams) AppendTo(body *RequestValues) {
-	if len(p.Filters.f) > 0 {
-		p.Filters.AppendTo(body)
-	}
-
-	if p.Skip > 0 {
-		body.Add("skip", strconv.Itoa(p.Skip))
-	}
-
-	if p.Limit > 0 {
-		if p.Limit > 100 {
-			p.Limit = 100
-		}
-
-		body.Add("limit", strconv.Itoa(p.Limit))
-	}
-
-	for _, v := range p.Exp {
-		body.Add("expand[]", v)
-	}
-}
-
-// ToParams converts a ListParams to a Params by moving over any fields that
-// have valid targets in the new type. This is useful because fields in
-// Params can be injected directly into an http.Request while generally
-// ListParams is only used to build a set of parameters.
-func (p *ListParams) ToParams() *Params {
-	return &Params{}
 }
