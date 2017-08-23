@@ -33,7 +33,8 @@ func GetBackend() Backend {
 		api = apiDevURL
 	}
 	return &BackendConfiguration{
-		URL: api,
+		URL:        api,
+		HTTPClient: &http.Client{},
 	}
 }
 
