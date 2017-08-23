@@ -12,7 +12,7 @@ type API struct {
 
 // Init initializes the Icheck client with the appropriate secret key
 // as well as providing the ability to override the backend as needed.
-func (a *API) Init(backend *icheck.Backend) {
+func (a *API) Init(backend icheck.Backend) {
 	if backend == nil {
 		backend = icheck.GetBackend()
 	}

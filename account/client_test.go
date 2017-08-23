@@ -10,7 +10,7 @@ import (
 
 func TestLogin(t *testing.T) {
 	logrus.SetLevel(logrus.DebugLevel)
-	backend := &icheck.GetBackend()
+	backend := icheck.GetBackend()
 	client := &Client{B: backend}
 	accessToken, err := client.Login(&icheck.LoginParams{
 		Username: "0977465849",
