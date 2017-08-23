@@ -28,3 +28,11 @@ type LoginParams struct {
 	Password string
 	TTL      int64
 }
+
+type UserListResponse struct {
+	Users []User `json:"data"`
+}
+
+type UserListParams struct {
+	IcheckID []string
+}

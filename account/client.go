@@ -8,8 +8,7 @@ import (
 
 // Client is used to invoke /account APIs.
 type Client struct {
-	B   icheck.Backend
-	Key string
+	B icheck.Backend
 }
 
 // Me get current user
