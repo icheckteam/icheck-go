@@ -38,7 +38,7 @@ func GetBackend() Backend {
 	}
 }
 
-// Call is the Backend.Call implementation for invoking Stripe APIs.
+// Call is the Backend.Call implementation for invoking Icheck APIs.
 func (s BackendConfiguration) Call(method, path string, form *RequestValues, params *Params, v interface{}) error {
 	var body io.Reader
 	if form != nil && !form.Empty() {

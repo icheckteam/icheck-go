@@ -30,7 +30,7 @@ func (c *Client) List(params *icheck.UserListParams) ([]icheck.User, error) {
 	}
 
 	resp := &icheck.UserListResponse{}
-	err := c.B.Call("GET", "/users", body, params, resp)
+	err := c.B.Call("GET", "/users", body, nil, resp)
 	if err != nil {
 		return nil, err
 	}
