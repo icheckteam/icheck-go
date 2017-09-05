@@ -173,8 +173,8 @@ func (e *ErrBadRequest) Error() string {
 func (e *ErrBadRequest) Invalid() {}
 
 type Rule struct {
-	Rule    string
-	Message string
+	Rule    string `json:"rule"`
+	Message string `json:"message"`
 }
 
 type Error struct {

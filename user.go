@@ -11,7 +11,7 @@ type AccessToken struct {
 	ID            string
 	User          User
 	TTL           int
-	FirebaseToken string
+	FirebaseToken string `json:"firebase_token"`
 }
 
 // LoginResponse
