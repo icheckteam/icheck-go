@@ -41,3 +41,23 @@ func (c *Client) Login(params *icheck.LoginParams) (*icheck.AccessToken, error) 
 	}
 	return resp.Data, nil
 }
+
+// Register register an user
+func (c *Client) Register(params *icheck.RegisterParams) (*icheck.UserResponse, error) {
+	body := &icheck.RequestValues{}
+	if params.Username != "" {
+		body.Add("username", params.Username)
+	}
+	if params.Password != "" {
+		body.Add("password", params.Password)
+	}
+	if params.Name != "" {
+		body.Add("name", params.Name)
+	}
+	resp := &icheck.UserResponse{}
+	err := c.B.Call("POST", "/register", body, nil, resp)
+	if err != nil {
+		return nil, err
+	}
+	return resp, nil
+}

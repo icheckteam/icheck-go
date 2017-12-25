@@ -1,10 +1,14 @@
 package icheck
 
 type User struct {
-	ID       int    `json:"id"`
-	IcheckID string `json:"icheck_id"`
-	Avatar   string `json:"avatar"`
-	Name     string `json:"social_name"`
+	ID            int    `json:"id"`
+	IcheckID      string `json:"icheck_id"`
+	Avatar        string `json:"avatar"`
+	Name          string `json:"name"`
+	Phone         string `json:"phone"`
+	Email         string `json:"email"`
+	PhoneVerified bool   `json:"phone_verified"`
+	EmailVerified bool   `json:"email_verified"`
 }
 
 type AccessToken struct {
@@ -38,4 +42,11 @@ type UserListResponse struct {
 type UserListParams struct {
 	Params
 	IcheckID []string
+}
+
+// RegisterParams
+type RegisterParams struct {
+	Username string
+	Password string
+	Name     string
 }

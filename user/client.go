@@ -10,13 +10,13 @@ type Client struct {
 }
 
 // Login login user
-func (c *Client) Get(userID string, params *icheck.Params) (*icheck.AccessToken, error) {
-	resp := &icheck.LoginResponse{}
+func (c *Client) Get(userID string, params *icheck.Params) (*icheck.User, error) {
+	resp := &icheck.UserResponse{}
 	err := c.B.Call("GET", "/users/"+userID, nil, params, resp)
 	if err != nil {
 		return nil, err
 	}
-	return resp.Data, nil
+	return resp.User, nil
 }
 
 // List ...

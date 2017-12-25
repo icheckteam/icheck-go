@@ -17,6 +17,9 @@ var apiURL = "https://core.icheck.com.vn"
 var apiDevURL = "http://sandbox.icheck.com.vn:4336"
 var Dev = true
 
+var AppID string
+var Secret string
+
 type Backend interface {
 	Call(method, path string, form *RequestValues, params *Params, v interface{}) error
 }
@@ -167,6 +170,10 @@ type ErrBadRequest struct {
 }
 
 func (e *ErrBadRequest) Error() string {
+	for _, value := range e.InvalidAttributes {
+		return value[0].Message
+	}
+
 	return fmt.Sprintf("Invalid attributes =%s", e.InvalidAttributes)
 }
 
