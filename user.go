@@ -50,3 +50,9 @@ type RegisterParams struct {
 	Password string
 	Name     string
 }
+
+type LoginSocialParams struct {
+	Provider string
+	Code     string
+	TTL      int64
+}

@@ -1,6 +1,7 @@
 package account
 
 import (
+	"fmt"
 	"strconv"
 
 	icheck "github.com/icheckteam/icheck-go"
@@ -36,6 +37,29 @@ func (c *Client) Login(params *icheck.LoginParams) (*icheck.AccessToken, error) 
 	}
 	resp := &icheck.LoginResponse{}
 	err := c.B.Call("POST", "/login", body, nil, resp)
+	if err != nil {
+		return nil, err
+	}
+	return resp.Data, nil
+}
+
+// LoginWithSocial ....
+func (c *Client) LoginWithSocial(params *icheck.LoginSocialParams) (*icheck.AccessToken, error) {
+	body := &icheck.RequestValues{}
+	if params.Code != "" {
+		body.Add("code", params.Code)
+	}
+	if params.TTL > 0 {
+		body.Add("ttl", strconv.FormatInt(params.TTL, 10))
+	}
+
+	if params.Provider == "" {
+		params.Provider = "facebook"
+	}
+
+	resp := &icheck.LoginResponse{}
+
+	err := c.B.Call("GET", fmt.Sprintf("/auth/%s", params.Provider), body, nil, resp)
 	if err != nil {
 		return nil, err
 	}
