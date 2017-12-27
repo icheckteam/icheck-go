@@ -52,7 +52,7 @@ func (c *Client) ResetPassword(params *icheck.AccountKitResetPasswordParams) (*i
 
 	resp := &icheck.AccountKitResetPasswordResponse{}
 
-	err := c.B.Call("POST", "/accountkit/login", body, nil, resp)
+	err := c.B.Call("POST", "/accountkit/reset-password", body, nil, resp)
 	if err != nil {
 		return nil, err
 	}

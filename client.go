@@ -45,6 +45,7 @@ func GetBackend() Backend {
 func (s BackendConfiguration) Call(method, path string, form *RequestValues, params *Params, v interface{}) error {
 	var body io.Reader
 	if form != nil && !form.Empty() {
+		logrus.Debugf("method: %s, path: %s, data: %v\n", method, path, form)
 		data := form.Encode()
 		if strings.ToUpper(method) == "GET" {
 			path += "?" + data

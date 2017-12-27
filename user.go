@@ -4,7 +4,7 @@ type User struct {
 	ID            int    `json:"id"`
 	IcheckID      string `json:"icheck_id"`
 	Avatar        string `json:"avatar"`
-	Name          string `json:"name"`
+	Name          string `json:"social_name"`
 	Phone         string `json:"phone"`
 	Email         string `json:"email"`
 	PhoneVerified bool   `json:"phone_verified"`

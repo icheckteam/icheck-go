@@ -16,5 +16,5 @@ type AccountKitResetPasswordParams struct {
 
 // AccountKitResetPasswordResponse ...
 type AccountKitResetPasswordResponse struct {
-	Data map[string]interface{}
+	Data interface{}
 }
