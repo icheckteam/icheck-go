@@ -36,3 +36,25 @@ func (c *Client) List(params *icheck.UserListParams) ([]icheck.User, error) {
 	}
 	return resp.Users, nil
 }
+
+// Update ...
+func (c *Client) Update(data *icheck.UserUpdateParams, params *icheck.Params) (*icheck.User, error) {
+	body := &icheck.RequestValues{}
+	if params.Name != "" {
+		body.Add("name", params.Name)
+	}
+	if params.Avatar != "" {
+		body.Add("avatar", params.Avatar)
+	}
+
+	if params.Cover != "" {
+		body.Add("cover", params.Cover)
+	}
+
+	resp := &icheck.UserResponse{}
+	err := c.B.Call("POST", "/account", body, params, resp)
+	if err != nil {
+		return nil, err
+	}
+	return resp.User, nil
+}

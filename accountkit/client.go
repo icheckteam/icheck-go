@@ -58,3 +58,23 @@ func (c *Client) ResetPassword(params *icheck.AccountKitResetPasswordParams) (*i
 	}
 	return resp, nil
 }
+
+func (c *Client) ChangePhone(data *icheck.AccountKitChangePhoneParams, params *icheck.Params) (*icheck.AccountKitChangePhoneResponse, error) {
+	body := &icheck.RequestValues{}
+
+	if data.Code != "" {
+		body.Add("code", data.Code)
+	}
+
+	if data.Password != "" {
+		body.Add("password", data.Password)
+	}
+
+	resp := &icheck.AccountKitChangePhoneResponse{}
+
+	err := c.B.Call("POST", "/accountkit/change-phone", body, params, resp)
+	if err != nil {
+		return nil, err
+	}
+	return resp, nil
+}

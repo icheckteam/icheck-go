@@ -18,3 +18,14 @@ type AccountKitResetPasswordParams struct {
 type AccountKitResetPasswordResponse struct {
 	Data interface{}
 }
+
+// AccountKitChangePhoneParams ...
+type AccountKitChangePhoneParams struct {
+	Code     string
+	Password string
+}
+
+// AccountKitChangePhoneResponse ...
+type AccountKitChangePhoneResponse struct {
+	Data interface{}
+}
