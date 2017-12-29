@@ -56,3 +56,9 @@ type LoginSocialParams struct {
 	Code     string
 	TTL      int64
 }
+
+type UserUpdateParams struct {
+	Name   string
+	Avatar string
+	Cover  string
+}

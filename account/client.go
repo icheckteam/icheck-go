@@ -43,6 +43,16 @@ func (c *Client) Login(params *icheck.LoginParams) (*icheck.AccessToken, error) 
 	return resp.Data, nil
 }
 
+// Login login user
+func (c *Client) Logout(params *icheck.Params) (interface{}, error) {
+	resp := make(map[string]interface{})
+	err := c.B.Call("POST", "/logout", nil, params, resp)
+	if err != nil {
+		return nil, err
+	}
+	return resp["data"], nil
+}
+
 // LoginWithSocial ....
 func (c *Client) LoginWithSocial(params *icheck.LoginSocialParams) (*icheck.AccessToken, error) {
 	body := &icheck.RequestValues{}
