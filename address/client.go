@@ -77,3 +77,13 @@ func (c *Client) Update(id string, conf *icheck.AddressBody, params *icheck.Para
 	}
 	return resp, nil
 }
+
+// Update update an address
+func (c *Client) Delete(id string, params *icheck.Params) (*icheck.AddressResp, error) {
+	resp := &icheck.AddressResp{}
+	err := c.B.Call("DELETE", fmt.Sprintf("/addresses/%v", id), nil, params, resp)
+	if err != nil {
+		return nil, err
+	}
+	return resp, nil
+}
