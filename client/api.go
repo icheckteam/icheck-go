@@ -4,6 +4,7 @@ import (
 	icheck "github.com/icheckteam/icheck-go"
 	"github.com/icheckteam/icheck-go/account"
 	"github.com/icheckteam/icheck-go/accountkit"
+	"github.com/icheckteam/icheck-go/address"
 	"github.com/icheckteam/icheck-go/location"
 	"github.com/icheckteam/icheck-go/search"
 	"github.com/icheckteam/icheck-go/user"
@@ -16,6 +17,7 @@ type API struct {
 	Search     *search.Client
 	Location   *location.Client
 	AccountKit *accountkit.Client
+	Address    *address.Client
 }
 
 // Init initializes the Icheck client with the appropriate secret key
@@ -30,6 +32,7 @@ func (a *API) Init(backend icheck.Backend) {
 	a.Search = &search.Client{B: backend}
 	a.Location = &location.Client{B: backend}
 	a.AccountKit = &accountkit.Client{B: backend}
+	a.Address = &address.Client{B: backend}
 }
 
 // New Api .....
