@@ -18,7 +18,7 @@ func (c *Client) Search(params url.Values) (*icheck.SearchResponse, error) {
 		body.Add("type", params.Get("type"))
 	}
 	if params.Get("query") != "" {
-		body.Add("password", params.Get("query"))
+		body.Add("query", params.Get("query"))
 	}
 	if params.Get("limit") != "" {
 		body.Add("limit", params.Get("limit"))

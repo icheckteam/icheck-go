@@ -2,8 +2,8 @@ package icheck
 
 // LoginResponse
 type SearchResponse struct {
-	Status int
-	Data   map[string]interface{}
+	Status int                    `json:"status"`
+	Data   map[string]interface{} `json:"data"`
 }
 
 type SearchParams struct {

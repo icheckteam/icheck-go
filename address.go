@@ -2,10 +2,10 @@ package icheck
 
 type Address struct {
 	ID       uint64
-	Address  string
-	City     int64
-	District int64
-	Email    string
+	Address  string `json:"address"`
+	City     int64  `json:"city"`
+	District int64  `json:"district"`
+	Email    string `json:"email"`
 }
 
 type AddressListResp struct {
@@ -17,8 +17,8 @@ type AddressResp struct {
 }
 
 type AddressBody struct {
-	Address  string
-	City     int64
-	District int64
-	Email    string
+	Address  string `json:"address"`
+	City     int64  `json:"city"`
+	District int64  `json:"district"`
+	Email    string `json:"email"`
 }
